@@ -1,6 +1,6 @@
 # pico
 
-PICO predicts durg effect on a target disease and it provide paths between drug target genes and the disease.
+PICO predicts drug effects on a target disease and it provides paths from drug target proteins to the target disease.
 
 
 Environment
@@ -19,14 +19,14 @@ Every input files are wrote in tsv format.
     Input data format: drug1 DEG1|DEG2|DEG3
                        ...
 
-2. Target phentype effective drug list:
+2. Target disease-effective drug list:
     Fill the file 'data/drug/target_phenotype/target_phenotype_drug_list.txt' with follwing format of drugs
     Input data format: drug1
                        drug2
                        drug3
                        ...
 
-3. Interaction information of gene(GE), molecular function(MF), biological process(BP), and phenotype(PH):
+3. Associations of gene(GE), molecular function(MF), biological process(BP), and phenotype(PH):
     Fill the files under 'data/network/VNN'
     Files: GE_MF.txt, MF_BP.txt, BP_PH.txt
 
@@ -38,12 +38,12 @@ Every input files are wrote in tsv format.
 
 Code in VNN:
 1. VNN_utils.py:
-        It contains util functions, such as file read and write, for VNN.py and python files in RWVNN
+        It contains util functions, such as reading and writing files, for VNN.py and python files in RWVNN
 2. CustomizedLinear.py
         Make custom connection in the neural network.
-        It modified from https://github.com/uchida-takumi/CustomizedLinear/blob/master/CustomizedLinear.py
+        It is the modified version of https://github.com/uchida-takumi/CustomizedLinear/blob/master/CustomizedLinear.py
 3. VNN_main:
-        Get VNN auroc score from DEGs and effectiveness of drug
+        Get the VNN auroc score
         Function:
             get_auroc(n_epochs, cross_validation, oversampling_ratio)
 
@@ -68,14 +68,15 @@ It recommends every drug name in lower case.
 Every input files are wrote in tsv format.
 
 1. Drug_target information:
-    It needs to fill the two files. , Combination_Drug_Targets_From_DCDB.txt
+    It needs to fill the two files. Drug_Target.txt, Combination_Drug_Targets_From_DCDB.txt
         -Drug_Target.txt
             Fill the files with follwing format example
             Input data format: drug1 Target1|Target2|Target3
                                ...
         -Combination_Drug_Targets_From_DCDB.txt
             Fill the files with follwing format example
-            This file needs header
+            This file needs a file header as below:
+              --> ID: DCDBID, label: P (positive) or N (negative), name: names of drugs, target: gene symbols of target proteins
             Input data format: ID   label   name    targets (header)
                                DCID1 P drug1|drug2 Target1|Target2|Target3
                                ...
@@ -83,7 +84,7 @@ Every input files are wrote in tsv format.
 2. Target phentype effective drug list:
     Same as VNN
 
-3. Drug DEGs and RW score of all nodes in the network:
+3. Drug DEGs and a RW score of all nodes in the network:
     Result from RW
 
 
