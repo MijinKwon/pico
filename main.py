@@ -13,7 +13,7 @@ if __name__ == '__main__':
     Get VNN auroc score from DEGs and effectiveness of drug
     """
 
-    # input example - no cross-validation, 30 epochs, 0.06 oversampling_ratio
+    # input example - no cross-validation, 30 epochs, 0.06 oversampling_ratio for negative samples
     cross_validation = False
     n_epochs = 30
     oversampling_ratio = 0.06
@@ -45,7 +45,7 @@ if __name__ == '__main__':
     """
     RWVNN_path_finder.py
     
-    Get total path with RW score and VNN path score in .tsv file format under path_result folder
+    Get total paths with RW scores and VNN path scores in .tsv file format under path_result folder
     """
 
     # input example - single drug, 30 epochs, 0.06 oversampling_ratio, all data under RW prediction result folder
@@ -55,7 +55,7 @@ if __name__ == '__main__':
     single_data = False
     rpf.get_RWVNN_path(single_data, is_comb, n_epochs, oversampling_ratio)
 
-    # single data example with drug name under RW prediction result folder
+    # single compound data with drug name under RW prediction result folder
     single_data = True
-    drug_name = "lapatinib"
+    drug_name = "lapatinib" # example
     rpf.get_RWVNN_path(single_data, is_comb, n_epochs, oversampling_ratio, "lapatinib")
